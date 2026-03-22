@@ -70,6 +70,7 @@ This is the most critical step. **Test what you ship, not what's in your working
 | CI workflow | `.github/workflows/ci.yml` or similar exists, runs on push/PR |
 | Publish workflow | `.github/workflows/publish.yml` exists, triggers on tag push |
 | Trusted publisher | Publish workflow uses OIDC (`id-token: write` permission), not API tokens |
+| Permissions complete | If workflow sets explicit `permissions`, verify `contents: read` is included. When you set ANY explicit permission, GitHub Actions defaults ALL others to none — private repos will fail `actions/checkout` without `contents: read`. FAIL if missing on private repos, WARN on public repos. |
 | Pre-commit config | `.pre-commit-config.yaml` exists. WARN if missing. |
 
 ### 6. Dependency Hygiene
