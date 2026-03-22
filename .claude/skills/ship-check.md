@@ -55,7 +55,18 @@ This is the most critical step. **Test what you ship, not what's in your working
 | Import test | `python -c "import <package>"` in the temp venv | Import fails |
 | CLI test | If entry points exist, run `<cli> --help` in temp venv | CLI crashes |
 
-### 4. Version Consistency
+### 4. README Image URLs (PyPI rendering)
+
+PyPI renders README from the sdist — relative image paths break. Check all `<img src=` and `![](` references in README.md.
+
+| Check | Criteria |
+|-------|---------|
+| No relative images | Every image `src` or markdown image path starts with `http` or `https`. FAIL if relative paths like `logo.png` or `docs/image.png` found. |
+| Correct domain | Images pointing to GitHub should use `https://raw.githubusercontent.com/{org}/{repo}/main/` not `https://github.com/{org}/{repo}/blob/`. |
+
+If relative paths found, provide the fix: replace `src="logo.png"` with `src="https://raw.githubusercontent.com/{org}/{repo}/main/logo.png"`.
+
+### 5. Version Consistency
 
 | Check | Criteria |
 |-------|---------|
