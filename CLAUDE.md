@@ -18,6 +18,7 @@ code → test-forge (does it work?)
 
 | Skill | What It Does |
 |-------|-------------|
+| `/ship-full-audit` | Run ALL forges against a project: foss-check → sec-audit → ship-check → ship-qa → forge-enforce |
 | `/ship-check` | Pre-ship audit: clean tree, build verification, install-test artifacts, .gitignore coverage |
 | `/ship-init` | Scaffold shipping infrastructure: pre-commit hooks, CI workflows, .gitignore |
 | `/ship-release` | End-to-end release: preflight → build → verify → tag → publish → smoke test |
