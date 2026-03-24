@@ -26,6 +26,40 @@ Build the wheel. Install it in a clean venv. Run smoke tests against the install
 
 ship-forge's `/ship-check` and `/ship-release` enforce this by running build verification before every release.
 
+## The Dev-to-PyPI Lifecycle
+
+How professional Python developers get from "I'm editing source" to "it's on PyPI and it works":
+
+```
+Phase 1: LOCAL          pip install -e .           Edit → test → instant feedback
+Phase 2: INTEGRATION    pip install git+branch     Downstream project tests your branch
+Phase 3: PRE-RELEASE    pip install --pre          v1.5.0a1 on PyPI, invisible to normal install
+Phase 4: RELEASE        pip install package        v1.5.0 — the real deal
+```
+
+**Nobody assumes it will work online.** Confidence is earned at each layer.
+
+### Quick Reference
+
+| Situation | Command |
+|-----------|---------|
+| Developing locally | `pip install -e .` in the package repo |
+| Testing in another project | `pip install git+https://github.com/you/pkg.git@branch` |
+| Publishing pre-release | Tag `v1.5.0a1`, CI publishes. Users opt in with `--pre` |
+| Publishing release | Tag `v1.5.0`, CI publishes. Now it's the default |
+| Protecting downstream | Pin `==1.4.0` in apps, `>=1.4,<2` in libraries |
+
+### Version Tags
+
+| Tag | Meaning | Who gets it |
+|-----|---------|-------------|
+| `1.5.0a1` | Alpha — unstable, APIs may change | Only `--pre` users |
+| `1.5.0b1` | Beta — feature-complete, bugs expected | Only `--pre` users |
+| `1.5.0rc1` | Release candidate — believed stable | Only `--pre` users |
+| `1.5.0` | Release | Everyone |
+
+See `findings/0009-python-package-dev-to-pypi-lifecycle.md` for the full research.
+
 ## Templates
 
 | Template | What |

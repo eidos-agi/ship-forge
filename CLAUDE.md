@@ -24,6 +24,7 @@ code → test-forge (does it work?)
 | `/ship-release` | End-to-end release: preflight → build → verify → tag → publish → smoke test |
 | `/ship-deploy` | Railway deployment checklist: health checks, SIGTERM, env vars, rollback plan |
 | `/ship-qa` | MCP server QA: schema validation, tool descriptions, error standards, behavior testing |
+| `/ship-dev` | Local development workflow: editable installs, branch testing, pre-release lifecycle |
 
 ## Templates
 
