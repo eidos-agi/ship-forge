@@ -19,7 +19,8 @@ code → test-forge (does it work?)
 | Skill | What It Does |
 |-------|-------------|
 | `/ship-full-audit` | Run ALL forges against a project: foss-check → sec-audit → ship-check → ship-qa → forge-enforce |
-| `/ship-check` | Pre-ship audit: clean tree, build verification, install-test artifacts, .gitignore coverage |
+| `/ship-detect` | Auto-detect which preflight checks a project needs from config, CI, and history (L0→L1) |
+| `/ship-check` | Pre-ship audit: runs `/ship-detect` first, then clean tree, build verification, install-test artifacts |
 | `/ship-init` | Scaffold shipping infrastructure: pre-commit hooks, CI workflows, .gitignore |
 | `/ship-release` | End-to-end release: preflight → build → verify → tag → publish → smoke test |
 | `/ship-deploy` | Railway deployment checklist: health checks, SIGTERM, env vars, rollback plan |
@@ -42,6 +43,7 @@ code → test-forge (does it work?)
 
 ## Related Forges
 
+- **ml-forge** — intelligence patterns: ship-detect uses ml-forge's L0→L1 hybrid pattern
 - **foss-forge** — open-source standards and marketing
 - **security-forge** — security auditing and agentic threat modeling
 - **demo-forge** — AI-generated demo content

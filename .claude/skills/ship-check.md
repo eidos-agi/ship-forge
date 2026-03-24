@@ -8,7 +8,15 @@ User says `/ship-check` or asks if a project is ready to ship, release, or publi
 
 ## Instructions
 
-Run every check below against the current working directory. Report PASS, FAIL, or WARN. **FAIL blocks shipping. WARN requires acknowledgment.**
+### Step 0: Detect Project Checks (MANDATORY)
+
+Before running any checks, run `/ship-detect` to build the check manifest. This scans the project's config files and CI workflows to determine which checks are relevant. **Do not skip this step** — it's what prevents the "CI catches what preflight missed" problem.
+
+The detected checks augment the standard checks below. If `/ship-detect` finds a linter, test runner, or CI step that isn't in the standard list, **add it to this run**.
+
+### Standard Checks
+
+Run every check below against the current working directory, PLUS any checks detected by `/ship-detect`. Report PASS, FAIL, or WARN. **FAIL blocks shipping. WARN requires acknowledgment.**
 
 ### 1. Working Tree Hygiene
 
